@@ -14,12 +14,11 @@ import java.util.Map;
  */
 public class RetrofitUtil {
     public static void deleteAllCookies(Context context) {
-        PersistentCookieStore myCookieStore = new PersistentCookieStore(context);
-        myCookieStore.removeAll();
+        PersistentCookieStore.getInstance(context).removeAll();
     }
 
     public static String getCookies(Context context, String domain) {
-        PersistentCookieStore myCookieStore = new PersistentCookieStore(context);
+        PersistentCookieStore myCookieStore = PersistentCookieStore.getInstance(context);
         List<HttpCookie> cookies = myCookieStore.getCookies();
         Map<String, String> keyValues = new HashMap<>();
         if (cookies == null || domain == null) {
@@ -35,7 +34,7 @@ public class RetrofitUtil {
     }
 
     public static String getCookie(Context context, String domain, String key) {
-        PersistentCookieStore cookieStore = new PersistentCookieStore(context);
+        PersistentCookieStore cookieStore = PersistentCookieStore.getInstance(context);
         List<HttpCookie> cookies = cookieStore.getCookies();
         if (cookies == null || domain == null || key == null) {
             return null;

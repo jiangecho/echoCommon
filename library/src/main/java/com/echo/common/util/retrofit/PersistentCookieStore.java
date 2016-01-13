@@ -41,12 +41,21 @@ public class PersistentCookieStore implements CookieStore {
     private final HashMap<String, ConcurrentHashMap<String, HttpCookie>> cookies;
     private final SharedPreferences cookiePrefs;
 
+    private static PersistentCookieStore instance;
+
+    public static synchronized PersistentCookieStore getInstance(Context context) {
+        if (instance == null) {
+            instance = new PersistentCookieStore(context);
+        }
+        return instance;
+    }
+
     /**
      * Construct a persistent cookie store.
      *
      * @param context Context to attach cookie store to
      */
-    public PersistentCookieStore(Context context) {
+    private PersistentCookieStore(Context context) {
         cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, 0);
         cookies = new HashMap<String, ConcurrentHashMap<String, HttpCookie>>();
 
@@ -233,9 +242,10 @@ public class PersistentCookieStore implements CookieStore {
         return data;
     }
 
-    private String getHost(URI uri){
+    // TODO getDomain
+    private String getHost(URI uri) {
         String host = uri.getHost();
-        if (host.contains("ikeepfit.cn")){
+        if (host.contains("ikeepfit.cn")) {
             return "ikeepfit.cn";
         }
         return host;
