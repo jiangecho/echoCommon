@@ -31,8 +31,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -83,8 +81,8 @@ public class WechatTab extends HorizontalScrollView {
     private Paint rectPaint;
     private Paint dividerPaint;
 
-    private int underlineColor = 0x1A000000;
-    private int dividerColor = 0x1A000000;
+    private int underlineColor = Color.parseColor("0x1A000000");
+    private int dividerColor = Color.parseColor("0x1A000000");
 
     private boolean shouldExpand = false;
     private boolean textAllCaps = true;
@@ -100,8 +98,8 @@ public class WechatTab extends HorizontalScrollView {
     private int mMyUnderlinePadding = 12;
 
     private int tabTextSize = 12;
-    private int tabTextColor = 0xFF666666;
-    private int selectedTabTextColor = 0x000000;
+    private int tabTextColor = Color.parseColor("0xFF666666");
+    private int selectedTabTextColor = Color.BLACK;
     private Typeface tabTypeface = null;
     private int tabTypefaceStyle = Typeface.NORMAL;
 
@@ -167,6 +165,7 @@ public class WechatTab extends HorizontalScrollView {
 
         tabTextSize = a.getDimensionPixelSize(R.styleable.WechatTab_tabTextSize, tabTextSize);
         tabTextColor = a.getColor(R.styleable.WechatTab_tabTextColor, tabTextColor);
+        selectedTabTextColor = a.getColor(R.styleable.WechatTab_focusedTabTextColor, selectedTabTextColor);
 
         a.recycle();
 
@@ -355,8 +354,8 @@ public class WechatTab extends HorizontalScrollView {
                     //SpannableString spannableString = tabSpannableTitles.get(i);
                     SpannableString spannableString = ((WeChatTabTitleInterface) adapter).getTabTitle(i);
                     if (i == selectedPosition) {
-                        spannableString.setSpan(new ForegroundColorSpan(selectedTabTextColor), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                        tab.setText(spannableString);
+//                        spannableString.setSpan(new ForegroundColorSpan(selectedTabTextColor), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+//                        tab.setText(spannableString);
                     } else {
                         tab.setText(spannableString);
                     }
@@ -388,8 +387,8 @@ public class WechatTab extends HorizontalScrollView {
                         }
                     }
                     if (i == selectedPosition) {
-                        //tab.setTextColor(selectedTabTextColor);
-                        tab.setTextColor(Color.BLACK);
+                        tab.setTextColor(selectedTabTextColor);
+                        //tab.setTextColor(Color.BLACK);
                     } else {
                         tab.setTextColor(tabTextColor);
                     }

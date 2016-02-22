@@ -14,6 +14,7 @@
         <attr name="indicatorDrawable" format="reference"/>
         <attr name="tabTextSize" format="dimension"/>
         <attr name="tabTextColor" format="color"/>
+        <attr name="focusedTabTextColor" format="color"/>
         <attr name="showUnderLine" format="boolean"/>
     </declare-styleable>
 </resources>
