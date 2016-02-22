@@ -81,8 +81,8 @@ public class WechatTab extends HorizontalScrollView {
     private Paint rectPaint;
     private Paint dividerPaint;
 
-    private int underlineColor = Color.parseColor("0x1A000000");
-    private int dividerColor = Color.parseColor("0x1A000000");
+    private int underlineColor = Color.parseColor("#1A000000");
+    private int dividerColor = Color.parseColor("#1A000000");
 
     private boolean shouldExpand = false;
     private boolean textAllCaps = true;
@@ -98,7 +98,7 @@ public class WechatTab extends HorizontalScrollView {
     private int mMyUnderlinePadding = 12;
 
     private int tabTextSize = 12;
-    private int tabTextColor = Color.parseColor("0xFF666666");
+    private int tabTextColor = Color.parseColor("#FF666666");
     private int selectedTabTextColor = Color.BLACK;
     private Typeface tabTypeface = null;
     private int tabTypefaceStyle = Typeface.NORMAL;
