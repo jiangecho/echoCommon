@@ -9,12 +9,16 @@ import android.view.ViewConfiguration;
 /**
  * Created by jiangecho on 16/3/7.
  */
-public class SwipeRefreshLayoutCanHorizontalScroll extends SwipeRefreshLayout {
+public class VerticalSwipeRefreshLayout extends SwipeRefreshLayout {
 
     private int mTouchSlop;
     private float mPrevX;
 
-    public SwipeRefreshLayoutCanHorizontalScroll(Context context, AttributeSet attrs) {
+    public VerticalSwipeRefreshLayout(Context context) {
+        super(context);
+    }
+
+    public VerticalSwipeRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
