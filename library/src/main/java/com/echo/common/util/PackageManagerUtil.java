@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.text.TextUtils;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class PackageManagerUtil {
         }
     }
 
-    public static int getVersionCode(Context context){
+    public static int getVersionCode(Context context) {
         PackageManager packageManager = context.getPackageManager();
         int versionCode = -1;
         try {
@@ -86,8 +87,8 @@ public class PackageManagerUtil {
     }
 
 
-    public static String getAppMetaData(Context context, String key){
-        if (context == null || TextUtils.isEmpty(key)){
+    public static String getAppMetaData(Context context, String key) {
+        if (context == null || TextUtils.isEmpty(key)) {
             return null;
         }
 
@@ -95,9 +96,9 @@ public class PackageManagerUtil {
         PackageManager packageManager = context.getPackageManager();
         try {
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
-            if (applicationInfo != null && applicationInfo.metaData != null){
+            if (applicationInfo != null && applicationInfo.metaData != null) {
                 Object object = applicationInfo.metaData.get(key);
-                if (object != null){
+                if (object != null) {
                     value = object.toString();
                 }
             }
@@ -106,6 +107,23 @@ public class PackageManagerUtil {
         }
 
         return value;
+    }
+
+
+    public static String getPackageSignature(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+            Signature[] signatures = packageInfo.signatures;
+            if (signatures != null && signatures.length > 0) {
+                return signatures[0].toCharsString();
+            }
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
