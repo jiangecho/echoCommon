@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0-beta5'
+        classpath 'com.android.tools.build:gradle:2.1.0-alpha3'
         classpath 'me.tatarka:gradle-retrolambda:3.2.4'
     }
 }
@@ -53,4 +53,5 @@ dependencies {
 
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.android.support:design:23.2.1'
 }

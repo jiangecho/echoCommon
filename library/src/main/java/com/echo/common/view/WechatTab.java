@@ -155,7 +155,7 @@ public class WechatTab extends HorizontalScrollView {
         underlineHeight = a.getDimensionPixelSize(R.styleable.WechatTab_underlineHeight, underlineHeight);
         dividerPadding = a.getDimensionPixelSize(R.styleable.WechatTab_tabDividerPadding, dividerPadding);
         tabPadding = a.getDimensionPixelSize(R.styleable.WechatTab_tabPaddingLeftRight, tabPadding);
-        tabBackgroundResId = a.getResourceId(R.styleable.WechatTab_tabBackground, tabBackgroundResId);
+        tabBackgroundResId = a.getResourceId(R.styleable.WechatTab_weChatTabBackground, tabBackgroundResId);
         shouldExpand = a.getBoolean(R.styleable.WechatTab_shouldExpand, shouldExpand);
         scrollOffset = a.getDimensionPixelSize(R.styleable.WechatTab_scrollOffset, scrollOffset);
         textAllCaps = a.getBoolean(R.styleable.WechatTab_tabTextAllCaps, textAllCaps);
@@ -164,7 +164,7 @@ public class WechatTab extends HorizontalScrollView {
         showUnderLine = a.getBoolean(R.styleable.WechatTab_showUnderLine, true);
 
         tabTextSize = a.getDimensionPixelSize(R.styleable.WechatTab_tabTextSize, tabTextSize);
-        tabTextColor = a.getColor(R.styleable.WechatTab_tabTextColor, tabTextColor);
+        tabTextColor = a.getColor(R.styleable.WechatTab_weChatTabTextColor, tabTextColor);
         selectedTabTextColor = a.getColor(R.styleable.WechatTab_focusedTabTextColor, selectedTabTextColor);
 
         a.recycle();
