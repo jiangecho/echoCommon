@@ -63,7 +63,9 @@ public abstract class RecyclerViewItemClickListener implements RecyclerView.OnIt
         for (int i = count - 1; i >= 0; i--) {
             final View child = viewGroup.getChildAt(i);
             if (child.getVisibility() == View.GONE) continue;
-            if (!child.isClickable()) continue;
+            if (!(child instanceof ViewGroup) && !child.isClickable()) {
+                continue;
+            }
             final float translationX = ViewCompat.getTranslationX(child);
             final float translationY = ViewCompat.getTranslationY(child);
             if (x >= child.getLeft() + translationX &&
