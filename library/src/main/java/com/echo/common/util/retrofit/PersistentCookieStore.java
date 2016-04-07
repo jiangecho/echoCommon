@@ -248,6 +248,8 @@ public class PersistentCookieStore implements CookieStore {
         if (host.contains("ikeepfit.cn")) {
             return "ikeepfit.cn";
         }
-        return host;
+        // TODO check ip
+        return "ikeepfit.cn";
+        //return host;
     }
 }
