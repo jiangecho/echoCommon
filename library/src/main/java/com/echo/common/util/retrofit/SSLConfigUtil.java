@@ -1,22 +1,21 @@
 package com.echo.common.util.retrofit;
 
-import com.squareup.okhttp.OkHttpClient;
-
 import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Created by jiangecho on 15/12/24.
  */
 public class SSLConfigUtil {
 
-    public static void trustAllCertificates(OkHttpClient okHttpClient) {
+    public static OkHttpClient trustAllCertificates(OkHttpClient okHttpClient) {
         try {
             // Create a trust manager that does not validate certificate chains
             final TrustManager[] trustAllCerts = new TrustManager[]{
@@ -31,7 +30,7 @@ public class SSLConfigUtil {
 
                         @Override
                         public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return null;
+                            return new X509Certificate[0];
                         }
                     }
             };
@@ -42,14 +41,12 @@ public class SSLConfigUtil {
             // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
-            okHttpClient.setSslSocketFactory(sslSocketFactory);
-            okHttpClient.setHostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
+            okHttpClient = okHttpClient.newBuilder()
+                    .sslSocketFactory(sslSocketFactory)
+                    .hostnameVerifier((hostname, session) -> true)
+                    .build();
 
+            return okHttpClient;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

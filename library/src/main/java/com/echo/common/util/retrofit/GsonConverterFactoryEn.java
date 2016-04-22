@@ -21,9 +21,6 @@ package com.echo.common.util.retrofit;
  */
 
 import com.google.gson.Gson;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.ResponseBody;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -35,8 +32,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import okio.Buffer;
-import retrofit.Converter;
+import retrofit2.Converter;
+import retrofit2.Retrofit;
 
 /**
  * attention: because the response json maybe dynamic, so create it.
@@ -78,14 +79,17 @@ public final class GsonConverterFactoryEn extends Converter.Factory {
     }
 
     @Override
-    public Converter<ResponseBody, ?> fromResponseBody(Type type, Annotation[] annotations) {
+    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
+                                                            Retrofit retrofit) {
         return new GsonResponseBodyConverter<>(gson, type);
     }
 
     @Override
-    public Converter<?, RequestBody> toRequestBody(Type type, Annotation[] annotations) {
+    public Converter<?, RequestBody> requestBodyConverter(Type type,
+                                                          Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
         return new GsonRequestBodyConverter<>(gson, type);
     }
+
 
     final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         private final Gson gson;

@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0-alpha5'
+        classpath 'com.android.tools.build:gradle:2.1.0-beta3'
         classpath 'me.tatarka:gradle-retrolambda:3.2.4'
     }
 }
@@ -38,17 +38,18 @@ android {
 }
 
 dependencies {
-    final RETROFIT_VERSION = '2.0.0-beta2'
+    final RETROFIT_VERSION = '2.0.2'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
-    compile("com.squareup.retrofit:retrofit:$RETROFIT_VERSION")
+    compile("com.squareup.retrofit2:retrofit:$RETROFIT_VERSION")
     //compile 'com.squareup.okhttp:okhttp:2.7.0'
     //compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
-    compile("com.squareup.retrofit:converter-gson:$RETROFIT_VERSION")
-    compile "com.squareup.retrofit:adapter-rxjava:$RETROFIT_VERSION"
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile("com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION")
+    compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
     compile 'com.squareup.okhttp:logging-interceptor:2.6.0'
 
     compile 'io.reactivex:rxandroid:1.1.0'
