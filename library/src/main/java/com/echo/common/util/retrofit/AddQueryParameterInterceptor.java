@@ -10,11 +10,11 @@ import okhttp3.Response;
 /**
  * Created by jiangecho on 15/12/24.
  */
-public class AddQueryParamterInterceptor implements Interceptor {
+public class AddQueryParameterInterceptor implements Interceptor {
 
     private String key, value;
 
-    public AddQueryParamterInterceptor(String key, String value) {
+    public AddQueryParameterInterceptor(String key, String value) {
         this.key = key;
         this.value = value;
     }
