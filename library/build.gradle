@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0-beta3'
+        classpath 'com.android.tools.build:gradle:2.1.0-rc1'
         classpath 'me.tatarka:gradle-retrolambda:3.2.4'
     }
 }
@@ -52,7 +52,10 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
 
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:palette-v7:23.3.0'
 }
