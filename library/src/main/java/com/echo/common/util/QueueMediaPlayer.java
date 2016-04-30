@@ -77,14 +77,18 @@ public class QueueMediaPlayer implements MediaPlayer.OnCompletionListener, Media
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-        mp.start();
+        if (isPaused) {
+            mp.pause();
+        } else {
+            mp.start();
+        }
     }
 
     public void pause() {
+        isPaused = true;
         try {
             if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                 mediaPlayer.pause();
-                isPaused = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,6 +109,7 @@ public class QueueMediaPlayer implements MediaPlayer.OnCompletionListener, Media
 
     public void stop() {
         audios.clear();
+        isPaused = false;
         try {
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
