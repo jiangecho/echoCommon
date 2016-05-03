@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="WechatTab">
-        <attr name="underlineColor" format="color"/>
-        <attr name="dividerColor" format="color"/>
-        <attr name="indicatorHeight" format="dimension"/>
-        <attr name="underlineHeight" format="dimension"/>
-        <attr name="tabDividerPadding" format="dimension"/>
-        <attr name="tabPaddingLeftRight" format="dimension"/>
-        <attr name="scrollOffset" format="dimension"/>
-        <attr name="weChatTabBackground" format="reference"/>
-        <attr name="shouldExpand" format="boolean"/>
-        <attr name="tabTextAllCaps" format="boolean"/>
-        <attr name="indicatorDrawable" format="reference"/>
-        <attr name="tabTextSize" format="dimension"/>
-        <attr name="weChatTabTextColor" format="color"/>
-        <attr name="focusedTabTextColor" format="color"/>
-        <attr name="showUnderLine" format="boolean"/>
+        <attr name="underlineColor" format="color" />
+        <attr name="dividerColor" format="color" />
+        <attr name="indicatorHeight" format="dimension" />
+        <attr name="underlineHeight" format="dimension" />
+        <attr name="tabDividerPadding" format="dimension" />
+        <attr name="tabPaddingLeftRight" format="dimension" />
+        <attr name="scrollOffset" format="dimension" />
+        <attr name="weChatTabBackground" format="reference" />
+        <attr name="shouldExpand" format="boolean" />
+        <attr name="tabTextAllCaps" format="boolean" />
+        <attr name="indicatorDrawable" format="reference" />
+        <attr name="tabTextSize" format="dimension" />
+        <attr name="weChatTabTextColor" format="color" />
+        <attr name="focusedTabTextColor" format="color" />
+        <attr name="showUnderLine" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="TitleSummaryView">
+        <attr name="titleSummaryIcon" format="reference|color" />
+        <attr name="titleSummaryTitle" format="reference|string" />
+        <attr name="titleSummarySummary" format="reference|string" />
     </declare-styleable>
 </resources>
