@@ -16,11 +16,15 @@ public class TitleSummaryView extends LinearLayout {
 
     private TextView titleTV;
     private TextView summaryTV;
-    ImageView iconImageView;
+    private TextView tipTextView;
+    private ImageView iconImageView;
+    private ImageView indicatorImageView;
 
     private Drawable icon;
     private String title;
     private String summary;
+    private String tip;
+    private boolean showIndicator;
 
     public TitleSummaryView(Context context) {
         this(context, null);
@@ -41,9 +45,11 @@ public class TitleSummaryView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.title_summary, this); // Attention: must pass this into inflate
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TitleSummaryView);
-        title = typedArray.getString(R.styleable.TitleSummaryView_titleSummarySummary);
+        title = typedArray.getString(R.styleable.TitleSummaryView_titleSummaryTitle);
         summary = typedArray.getString(R.styleable.TitleSummaryView_titleSummarySummary);
         icon = typedArray.getDrawable(R.styleable.TitleSummaryView_titleSummaryIcon);
+        tip = typedArray.getString(R.styleable.TitleSummaryView_titleSummaryTip);
+        showIndicator = typedArray.getBoolean(R.styleable.TitleSummaryView_titleSummaryShowIndicator, false);
 
         typedArray.recycle();
     }
@@ -62,19 +68,22 @@ public class TitleSummaryView extends LinearLayout {
         iconImageView = (ImageView) findViewById(R.id.icon);
         titleTV = (TextView) findViewById(R.id.title);
         summaryTV = (TextView) findViewById(R.id.summary);
+        tipTextView = (TextView) findViewById(R.id.tip);
+        indicatorImageView = (ImageView) findViewById(R.id.indicator);
 
         if (icon != null) {
             iconImageView.setImageDrawable(icon);
         }
 
-        if (title != null) {
-            titleTV.setText(title);
-        }
+        titleTV.setText(title);
         if (summary != null) {
             summaryTV.setText(summary);
         } else {
             summaryTV.setVisibility(GONE);
         }
+
+        tipTextView.setText(tip);
+        indicatorImageView.setVisibility(showIndicator ? VISIBLE : GONE);
     }
 
     public void setSummary(String summary) {

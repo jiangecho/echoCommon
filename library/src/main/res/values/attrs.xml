@@ -21,5 +21,7 @@
         <attr name="titleSummaryIcon" format="reference|color" />
         <attr name="titleSummaryTitle" format="reference|string" />
         <attr name="titleSummarySummary" format="reference|string" />
+        <attr name="titleSummaryTip" format="string" />
+        <attr name="titleSummaryShowIndicator" format="boolean" />
     </declare-styleable>
 </resources>
