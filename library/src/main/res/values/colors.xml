@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="wechat_background_tab_pressed">#ffffff</color>
+    <color name="background_pressed_color">#d0d0d0</color>
+    <color name="white_color">#ffffff</color>
 </resources>
