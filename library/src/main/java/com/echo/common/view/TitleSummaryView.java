@@ -5,26 +5,29 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.echo.common.R;
 
 
-public class TitleSummaryView extends LinearLayout {
+public class TitleSummaryView extends RelativeLayout {
 
     private TextView titleTV;
     private TextView summaryTV;
     private TextView tipTextView;
     private ImageView iconImageView;
     private ImageView indicatorImageView;
+    private View dividerView;
 
     private Drawable icon;
     private String title;
     private String summary;
     private String tip;
     private boolean showIndicator;
+    private boolean showDivider;
 
     public TitleSummaryView(Context context) {
         this(context, null);
@@ -50,6 +53,7 @@ public class TitleSummaryView extends LinearLayout {
         icon = typedArray.getDrawable(R.styleable.TitleSummaryView_titleSummaryIcon);
         tip = typedArray.getString(R.styleable.TitleSummaryView_titleSummaryTip);
         showIndicator = typedArray.getBoolean(R.styleable.TitleSummaryView_titleSummaryShowIndicator, false);
+        showDivider = typedArray.getBoolean(R.styleable.TitleSummaryView_titleSummaryShowDivider, false);
 
         typedArray.recycle();
     }
@@ -70,6 +74,7 @@ public class TitleSummaryView extends LinearLayout {
         summaryTV = (TextView) findViewById(R.id.summary);
         tipTextView = (TextView) findViewById(R.id.tip);
         indicatorImageView = (ImageView) findViewById(R.id.indicator);
+        dividerView = findViewById(R.id.divider);
 
         if (icon != null) {
             iconImageView.setImageDrawable(icon);
@@ -84,6 +89,14 @@ public class TitleSummaryView extends LinearLayout {
 
         tipTextView.setText(tip);
         indicatorImageView.setVisibility(showIndicator ? VISIBLE : GONE);
+        dividerView.setVisibility(showDivider ? VISIBLE : GONE);
+    }
+
+    public void setDividerVisibility(int visibility) {
+        if (dividerView != null) {
+            dividerView.setVisibility(visibility);
+        }
+        showDivider = visibility == VISIBLE ? true : false;
     }
 
     public void setSummary(String summary) {

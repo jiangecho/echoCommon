@@ -23,5 +23,6 @@
         <attr name="titleSummarySummary" format="reference|string" />
         <attr name="titleSummaryTip" format="string" />
         <attr name="titleSummaryShowIndicator" format="boolean" />
+        <attr name="titleSummaryShowDivider" format="boolean" />
     </declare-styleable>
 </resources>
