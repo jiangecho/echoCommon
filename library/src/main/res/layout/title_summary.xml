@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:background="@drawable/title_summary_bg"
-    android:paddingLeft="?android:attr/scrollbarSize"
-    android:paddingRight="?android:attr/scrollbarSize">
+    android:background="@drawable/title_summary_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
 
         <ImageView
@@ -32,7 +32,7 @@
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:singleLine="true"
-                android:textColor="?android:attr/textColorAlertDialogListItem"
+                android:textColor="#303030"
                 android:textSize="16sp"
                 tools:text="title" />
 
@@ -44,7 +44,7 @@
                 android:layout_alignStart="@+id/title"
                 android:layout_below="@+id/title"
                 android:maxLines="4"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="#a0a0a0"
                 android:textSize="12sp"
                 tools:text="summary" />
 
@@ -56,7 +56,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:maxLines="4"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="#a0a0a0"
                 android:textSize="14sp"
                 tools:text="tip" />
 
@@ -75,6 +75,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:layout_marginLeft="15dp"
         android:layout_alignParentBottom="true"
         android:background="?android:listDivider" />
 

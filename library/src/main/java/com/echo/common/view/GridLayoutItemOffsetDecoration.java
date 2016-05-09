@@ -29,15 +29,12 @@ public class GridLayoutItemOffsetDecoration extends RecyclerView.ItemDecoration 
 
         int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
         super.getItemOffsets(outRect, view, parent, state);
-        if (position <= 1) {
-            outRect.set(0, 0, 0, 0);
+        if (position % 2 == 0) {
+            outRect.set(mItemOffset, mItemOffset / 2, mItemOffset / 2, mItemOffset / 2);
         } else {
-            if (position % 2 == 0) {
-                outRect.set(mItemOffset, mItemOffset / 2, mItemOffset / 2, mItemOffset / 2);
-            } else {
-                outRect.set(mItemOffset / 2, mItemOffset / 2, mItemOffset, mItemOffset / 2);
-            }
+            outRect.set(mItemOffset / 2, mItemOffset / 2, mItemOffset, mItemOffset / 2);
         }
+
     }
 
     @Override

@@ -53,7 +53,7 @@ public class TitleSummaryView extends RelativeLayout {
         icon = typedArray.getDrawable(R.styleable.TitleSummaryView_titleSummaryIcon);
         tip = typedArray.getString(R.styleable.TitleSummaryView_titleSummaryTip);
         showIndicator = typedArray.getBoolean(R.styleable.TitleSummaryView_titleSummaryShowIndicator, false);
-        showDivider = typedArray.getBoolean(R.styleable.TitleSummaryView_titleSummaryShowDivider, false);
+        showDivider = typedArray.getBoolean(R.styleable.TitleSummaryView_titleSummaryShowDivider, true);
 
         typedArray.recycle();
     }
@@ -100,10 +100,36 @@ public class TitleSummaryView extends RelativeLayout {
     }
 
     public void setSummary(String summary) {
-        if (summary != null) {
-            this.summary = summary;
+        this.summary = summary;
+        if (summaryTV != null) {
             summaryTV.setVisibility(VISIBLE);
             summaryTV.setText(summary);
         }
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+        if (titleTV != null) {
+            titleTV.setVisibility(VISIBLE);
+            titleTV.setText(title);
+        }
+    }
+
+    public void showIndicator(boolean showIndicator) {
+        this.showIndicator = showIndicator;
+        if (indicatorImageView != null) {
+            indicatorImageView.setVisibility(showIndicator ? VISIBLE : GONE);
+
+        }
+
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
+        if (tipTextView != null) {
+            tipTextView.setVisibility(VISIBLE);
+            tipTextView.setText(tip);
+        }
+
     }
 }
