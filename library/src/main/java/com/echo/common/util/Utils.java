@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Created by jiangecho on 16/4/26.
  */
@@ -32,5 +35,21 @@ public class Utils {
         static int getLargeMemoryClass(ActivityManager activityManager) {
             return activityManager.getLargeMemoryClass();
         }
+    }
+
+    public static String loadFileContentFromAsset(Context context, String fileName) {
+        String content = null;
+        try {
+            InputStream is = context.getAssets().open(fileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            content = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return content;
     }
 }
