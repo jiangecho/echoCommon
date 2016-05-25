@@ -132,4 +132,12 @@ public class TitleSummaryView extends RelativeLayout {
         }
 
     }
+
+    public void setTitleColor(int color){
+        if(titleTV != null){
+            tipTextView.setVisibility(VISIBLE);
+            titleTV.setTextColor(color);
+        }
+    }
+
 }
