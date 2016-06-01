@@ -1,7 +1,7 @@
 package com.echo.common.util;
 
+import android.content.Context;
 import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 
 import java.io.IOException;
@@ -16,20 +16,21 @@ public class QueueMediaPlayer implements MediaPlayer.OnCompletionListener, Media
     private boolean isPaused;
 
     private boolean isAssetsAudio;
-    private AssetManager assetManager;
+    private Context context;
 
     /**
      * @param audios audio's full path queue
      */
-    public void play(Queue<String> audios) {
+    public void play(Context context, Queue<String> audios) {
         this.audios = audios;
         this.isAssetsAudio = false;
+        this.context = context;
 
         play();
     }
 
-    public void play(AssetManager assetManager, Queue<String> assetsAudios) {
-        this.assetManager = assetManager;
+    public void playAsset(Context context, Queue<String> assetsAudios) {
+        this.context = context;
         this.isAssetsAudio = true;
         this.audios = assetsAudios;
 
@@ -50,7 +51,7 @@ public class QueueMediaPlayer implements MediaPlayer.OnCompletionListener, Media
 
         try {
             if (isAssetsAudio) {
-                AssetFileDescriptor assetFileDescriptor = assetManager.openFd(audios.poll());
+                AssetFileDescriptor assetFileDescriptor = context.getAssets().openFd(audios.poll());
                 mediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
                 assetFileDescriptor.close();
             } else {
