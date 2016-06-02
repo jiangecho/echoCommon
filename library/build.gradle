@@ -35,6 +35,10 @@ android {
     lintOptions {
         abortOnError false
     }
+    packagingOptions {
+        exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.xml'
+        exclude 'META-INF/maven/com.squareup.picasso/picasso/pom.properties'
+    }
 }
 
 dependencies {
@@ -52,7 +56,7 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
 
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    //compile 'com.squareup.picasso:picasso:2.5.2'
 
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
