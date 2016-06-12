@@ -9,6 +9,7 @@ import android.os.Build;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Created by jiangecho on 16/4/26.
@@ -51,5 +52,24 @@ public class Utils {
             return null;
         }
         return content;
+    }
+
+    /**
+     * @param context
+     * @return null may be returned if the specified process not found
+     */
+    public static String getCurrentProcessName(Context context) {
+        int pid = android.os.Process.myPid();
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = activityManager.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo procInfo : runningApps) {
+            if (procInfo.pid == pid) {
+                return procInfo.processName;
+            }
+        }
+        return null;
     }
 }
