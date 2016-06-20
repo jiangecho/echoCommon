@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.webkit.WebView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Method;
@@ -75,6 +76,19 @@ public class JsBridge {
                     }
                 }
             }
+        }
+        return null;
+    }
+
+    public static JSONObject createResponse(int code, String msg, JSONObject result) {
+        JSONObject object = new JSONObject();
+        try {
+            object.put("code", code);
+            object.put("msg", msg);
+            object.putOpt("result", result);
+            return object;
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         return null;
     }

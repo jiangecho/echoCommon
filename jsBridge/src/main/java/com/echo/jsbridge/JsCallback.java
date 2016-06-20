@@ -32,8 +32,6 @@ public class JsCallback {
                     mWebViewRef.get().loadUrl(execJs);
                 }
             });
-
         }
-
     }
 }

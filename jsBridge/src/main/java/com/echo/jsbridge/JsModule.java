@@ -5,4 +5,5 @@ package com.echo.jsbridge;
  */
 public interface JsModule {
     // just for proguard
+    //public static void test(Context context, JSONObject jsonObject, JsCallback jsCallback);
 }

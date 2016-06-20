@@ -19,11 +19,17 @@
     var timers = {};
     timers.name = {};
     var Core = {
-        call: function (module, method, params, callback) {
+        // use for case when you do care about the response value, the response value will be returned through the callback
+        callForResult: function (module, method, params, callback) {
+            if (arguments.length < 4 || (typeof params) !== 'string' || (typeof callback) !== 'function' ){
+                console.log('args error');
+                return;
+            }
             var port = Utils.getPort();
             callbacks[port] = callback;
             var params = params;
             var uri = Utils.getUri(module, method, params, port);
+            uri = uri + '& _call'
             var timeout = arguments[4];
             if (!timeout) {
                 timeout = timeoutSec;
@@ -41,7 +47,8 @@
                 JSBridge.onFailure(port, Utils.getResultMsg(2, 'platform not support', null));
             }
         },
-        get: function (module, method, params) {
+        // use for case when you do not care about the return value
+        call: function (module, method, params) {
             var uri = Utils.getUri(module, method, params, 0);
             if (Utils.getDevice() === 'android') {
                 return window.prompt(uri, "");
