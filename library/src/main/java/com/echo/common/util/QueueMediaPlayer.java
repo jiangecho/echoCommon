@@ -42,7 +42,6 @@ public class QueueMediaPlayer implements MediaPlayer.OnCompletionListener, Media
 
     private void play() {
         Log.i(TAG, "play");
-        new Throwable().printStackTrace();
         if (audios.isEmpty()) {
             return;
         }

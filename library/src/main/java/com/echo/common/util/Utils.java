@@ -6,15 +6,19 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
+import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
  * Created by jiangecho on 16/4/26.
  */
 public class Utils {
+    private static final String TAG = "Utils";
 
     public static int calculateMemoryCacheSize(Context context) {
         ActivityManager am = getService(context, Application.ACTIVITY_SERVICE);
@@ -39,19 +43,35 @@ public class Utils {
     }
 
     public static String loadFileContentFromAsset(Context context, String fileName) {
-        String content = null;
+        BufferedReader in = null;
         try {
+            StringBuilder buf = new StringBuilder();
             InputStream is = context.getAssets().open(fileName);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            content = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+            in = new BufferedReader(new InputStreamReader(is));
+
+            String str;
+            boolean isFirst = true;
+            while ((str = in.readLine()) != null) {
+                if (isFirst)
+                    isFirst = false;
+                else
+                    buf.append('\n');
+                buf.append(str);
+            }
+            return buf.toString();
+        } catch (IOException e) {
+            Log.e(TAG, "Error opening asset " + fileName);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "Error closing asset " + fileName);
+                }
+            }
         }
-        return content;
+
+        return null;
     }
 
     /**
