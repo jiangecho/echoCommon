@@ -3,6 +3,7 @@ package com.echo.common.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.res.TypedArray;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.WindowManager;
@@ -49,5 +50,33 @@ public class ScreenUtil {
         int mScreenHeight = dm.heightPixels;
 
         return mScreenHeight;
+    }
+
+    public static int getStatusHeight(Context context) {
+        int statusBarHeight = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            statusBarHeight = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return statusBarHeight;
+    }
+
+    public static int getToolbarHeight(Context context) {
+        int actionBarHeight;
+        final TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize}
+        );
+        actionBarHeight = (int) styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+        return actionBarHeight;
+    }
+
+    public static int getNavigationBarHeight(Context context) {
+        int navigationBarHeight = 0;
+        int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            navigationBarHeight = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return navigationBarHeight;
     }
 }
