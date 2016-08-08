@@ -5,8 +5,6 @@ import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -137,7 +135,6 @@ public class SwipeRefreshLayout extends LinearLayout {
             addView(refreshView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, maxRefreshViewHeight));
             LayoutParams layoutParams = (LayoutParams) refreshView.getLayoutParams();
             layoutParams.topMargin = -maxRefreshViewHeight;
-            Log.e("jyj", "topMargin" + (-maxRefreshViewHeight));
 
             startDrawable = getDrawable(getContext(), R.drawable.anim_play3);
             pullIconView.setImageDrawable(startDrawable);
@@ -220,11 +217,11 @@ public class SwipeRefreshLayout extends LinearLayout {
                                 startRefreshAnimation();
                             } else {
                                 //closePull(height);
-                                hideRefreshView(height);
+                                hideRefreshView(0);
                             }
                         } else {
                             //closePull(height);
-                            hideRefreshView(height);
+                            hideRefreshView(-maxRefreshViewHeight + height);
                         }
                     }
                 }
@@ -275,19 +272,19 @@ public class SwipeRefreshLayout extends LinearLayout {
         if (refreshView != null && pullState != 0) {
             pullState = 0;
             pullIconView.setImageDrawable(startDrawable);
-            hideRefreshView(maxRefreshViewHeight);
+            hideRefreshView(0);
         }
     }
 
-    private void hideRefreshView(int originalTopMargin) {
+    private void hideRefreshView(int currentTopMargin) {
         Animation animation = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
 
+                int targetTopMargin = -maxRefreshViewHeight;
                 //super.applyTransformation(interpolatedTime, t);
                 LayoutParams layoutParams = (LayoutParams) refreshView.getLayoutParams();
-                layoutParams.topMargin = (int) ((-originalTopMargin) * interpolatedTime);
-                Log.e("jyja", "" + layoutParams.topMargin);
+                layoutParams.topMargin = (int) (currentTopMargin + (targetTopMargin - currentTopMargin) * interpolatedTime);
                 refreshView.setLayoutParams(layoutParams);
             }
         };
@@ -308,7 +305,6 @@ public class SwipeRefreshLayout extends LinearLayout {
         layoutParams.topMargin = marginTop;
         refreshView.setLayoutParams(layoutParams);
 
-        Log.e("jyj", "topMargin" + marginTop);
         pullIconView.invalidate();
     }
 
