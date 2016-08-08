@@ -66,7 +66,8 @@ public class ScreenUtil {
         final TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize}
         );
-        actionBarHeight = (int) styledAttributes.getDimension(0, 0);
+        //actionBarHeight = (int) styledAttributes.getDimension(0, 0);
+        actionBarHeight = (int) styledAttributes.getDimensionPixelSize(0, 0);
         styledAttributes.recycle();
         return actionBarHeight;
     }
