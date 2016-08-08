@@ -1,7 +1,6 @@
 package com.echo.common.view;
 
 import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
@@ -9,7 +8,7 @@ import android.view.ViewConfiguration;
 /**
  * Created by jiangecho on 16/3/7.
  */
-public class VerticalSwipeRefreshLayout extends SwipeRefreshLayout {
+public class VerticalSwipeRefreshLayout extends com.echo.common.view.SwipeRefreshLayout{
 
     private int mTouchSlop;
     private float mPrevX;
@@ -42,5 +41,8 @@ public class VerticalSwipeRefreshLayout extends SwipeRefreshLayout {
         }
 
         return super.onInterceptTouchEvent(event);
+    }
+    public boolean canChildScrollUp() {
+        return false;
     }
 }
