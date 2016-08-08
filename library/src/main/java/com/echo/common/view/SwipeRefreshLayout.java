@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -119,7 +121,7 @@ public class SwipeRefreshLayout extends LinearLayout {
 
     void initChildView() {
         if (childView == null) {
-            childView = getChildAt(0);
+            childView = getChildAt(1);
         }
     }
 
@@ -242,6 +244,12 @@ public class SwipeRefreshLayout extends LinearLayout {
                 }
             }
             return false;
+        } else if (childView instanceof RecyclerView) {
+            LinearLayoutManager layoutManager = (LinearLayoutManager) ((RecyclerView) childView).getLayoutManager();
+            RecyclerView.Adapter adapter = ((RecyclerView) childView).getAdapter();
+            if (layoutManager == null || adapter == null) return false;
+
+            return layoutManager.findFirstCompletelyVisibleItemPosition() == 0;
         }
         if (childView.getScrollY() < 3) {
             return true;
